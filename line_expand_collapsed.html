@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *,*::after,*::before{
+        box-sizing: border-box;
+    }
+    body{
+        background:#f3f3f3;
+        overflow: hidden;
+    }
+    .card-group{
+        display: flex;
+        gap: 0.5rem;
+        /* height:100vh; */
+        align-items: flex-start;
+    }
+    .card{
+        background: white;
+        padding:1rem;
+        border:1px solid black;
+        border-radius: .25em;
+        
+    }
+    h2,p{
+        margin:0;
+    }
+    h2{
+        margin-bottom: 1rem;  
+    }
+    .cutoff-text{
+        --max-line:3;
+        --line-height:1.4;
+        height:calc(var(--max-line)*1em*var(--line-height));
+        overflow:hidden;
+        line-height: 1.4;
+        position:relative;
+    }
+    .cutoff-text:has(+ .expand-btn:not(:checked))::before{
+        content:"";
+        position:absolute;
+        height:calc(1em*2*var(--line-height));
+        width:100%;
+        bottom:0;
+        pointer-events: none;
+        background:linear-gradient(to bottom,transparent,white)
+    }
+    .expand-btn{
+        appearance: none;
+        border:1px solid black;
+        padding:.5em;
+        border-radius: .25em;
+        cursor:pointer;
+        margin-top: 1rem;      
+    }
+    .expand-btn:hover{
+        background-color: #ccc;
+    }
+    .expand-btn:checked::before{
+        content: "collapsed";
+    }
+    .expand-btn::before{
+        content:"expand"
+    }
+    .cutoff-text:has(+ .expand-btn:checked){
+        height:auto;
+    }
+</style>
+<body>
+<section class="card-group">
+    <article class="card">
+        <h2>Article1</h2>
+        <p class="cutoff-text">Florida Governor Ron DeSantis and other Republicans are positioning to run. We asked Pence what his purpose would be if he runs. What would he want to do? And for the moment, he said, only service and unity.</p>
+        <input type="checkbox" class="expand-btn">    
+    </article>
+    <article class="card">
+        <h2>Article2</h2>
+        <p class="cutoff-text"> One of the reasons I ask why you'do advocate what has been called national conservatism, which could be defined different ways. But one way to think of it is instead of going for small government and limited government, a kind of libertarian approach. </p>
+        <input type="checkbox" class="expand-btn"> 
+    </article>
+    <article class="card">
+        <h2>Article3</h2>
+        <p class="cutoff-text"> One of the reasons I ask why you'd want to do is because, as I'm sure you know, there's a debate about the future of the Republican Party. And there are some people who advocate what has been called national conservatism, which could be defined different ways. But one way to think of it is instead of going for small government and limited government, a kind of libertarian approach. </p>
+        <input type="checkbox" class="expand-btn"> 
+    </article>
+</section>
+</body>
+</html>

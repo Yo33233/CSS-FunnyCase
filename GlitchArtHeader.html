@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vite App</title>
+  </head>
+  <link type="text/css" href="./mycss.css" rel="stylesheet" />
+  <style>
+    @font-face {
+  font-family:"SmileySans-Oblique";
+  src: url("./font/smiley-sans-v1.0.0/SmileySans-Oblique.otf")
+}
+
+body{
+  
+  display: flex;
+  width:100vw;
+  height:100vh;
+  align-items: center;
+  background-color: black; 
+  justify-content: center;
+}
+
+.text{
+  font-family:"SmileySans-Oblique";
+  color:white;
+  font-size:100px;
+  position:relative;
+  margin:0 auto;
+}
+.text::before{
+  /* font-family: "SmileySans-Oblique"; */
+  content:attr(data-text);
+  position:absolute;
+  left:-2px;
+  text-shadow:2px 0 red;
+  background:black;
+  animation:ani1 2s infinite linear alternate-reverse;
+}
+  .text::after{
+  /* font-family: "SmileySans-Oblique"; */
+  content:attr(data-text);
+  position:absolute;
+  left:2px;
+  text-shadow:-2px 0 blue;
+  background:black;
+  animation:ani2 2s infinite linear alternate-reverse;
+}  
+  </style>
+  <body>
+<div class="text" data-text="SUMMON">SUMMON</div>
+  </body>
+  <script>
+  </script>
+</html>

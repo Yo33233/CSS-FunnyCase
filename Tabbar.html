@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabbar动画特效</title>
+    <!-- 引入字体图标库 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    body{
+        height:100vh;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #d3ecf3;
+    }
+    /* list-style-type: none */
+    nav{
+        position:relative;
+    }
+    ul{
+        list-style-type: none;
+        background-color:#a2cdd8;
+        display: flex;
+        /* 宽高没有定义，由内部元素的内容决定 */
+        border-radius: 10px 10px 40px 40px;
+        box-shadow: 2px 10px 30px #76b5c5;
+    }
+    li{
+        width:160px;
+        height:70px;
+        /* border:1px solid red; */
+        /* 凸显出li元素，方便辨识 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* 为li元素的周围保留一点空间 */
+        margin:10px 15px;
+    }
+    li:first-child{
+        margin-left: 30px;
+    }
+    li:last-child{
+        margin-right:30px;
+    }
+    li a{
+        width:100%;
+        height:100%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        /* opacity:0.9999;*/
+    }
+    li .fa{
+        font-size: 29px;
+        height:29px;
+        width:29px;
+        transform: translateX(30px);
+        transition:0.4s cubic-bezier(0.77, 0, 0.175, 1); 
+        /*未选中状态下，将图标向右移动30px */
+    }
+    li .link-text{
+        /* position:relative; 该元素在flex盒模型中，不需要写position
+        [other than"static"]来创建层叠上下文,只需要为元素指明非auto值的z-index属性*/
+        /* 貌似层叠上下文会在非层叠上下文的上面 */
+        z-index:1;
+        font-size:16px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        user-select: none;
+        color:rgb(31, 72, 133);
+        margin-left: 10px;
+        opacity:0;
+        transition:0.3s ease;        
+    }
+
+    /* 以下为选中后的样式 */
+    li a.active .fa{
+        transform: translateX(0px);
+        color:rgb(11, 66, 122);
+    }
+    li a.active .link-text{
+        opacity:1;
+        transition-delay: 0.1s;
+        /* 先看看不添加过渡效果延迟时间是什么样子 */
+    }
+    .link-bg{
+        width: 160px;
+        height: 70px;
+        background-color: #679aac;
+        border-radius: 18px;
+        position:absolute;
+        left:30px;
+        top:50%;
+        z-index:0;
+        transform: translateY(-50%);
+        transition:0.3s cubic-bezier(0.77, 0, 0.175, 1);        
+    }
+/* t图标和文字都在链接标签*/
+</style>
+<body>
+    <!-- 图标和文字都在链接标签<a>的内部 -->
+        <!-- 切换到active状态下文字的transition动效有0.1秒的延迟 -->
+        <!-- nav>ul+active-background>li*3>a>图标字体+span -->
+        <nav>
+            <div class="link-bg"></div>
+            <ul>
+                <li>
+                    <a class="active">
+                        <i class="fa fa-home"></i>
+                        <span class="link-text">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="">
+                        <i class="fa fa-inbox"></i>
+                        <span class="link-text">Inbox</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="">
+                        <i class="fa fa-user"></i>
+                        <span class="link-text">User</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+</body>
+<script>
+    const links=document.querySelectorAll('a'),
+    bg=document.querySelector('.link-bg');
+    function setActive(el){
+        // 参数el为event.currentTarget
+        links.forEach(link=>{
+            link.classList.remove('active');
+        });
+        el.classList.add('active');
+    }
+    // 遍历所有a标签，绑定点击事件
+    links.forEach((link,index)=>{
+        link.addEventListener('click',e=>{
+            e.preventDefault();
+            bg.style.transform='translate('+(190*index)+'px,-50%)';
+            setActive(e.currentTarget);
+        })
+    })
+</script>
+</html>
