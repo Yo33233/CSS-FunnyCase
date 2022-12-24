@@ -16,9 +16,11 @@
     body{
         height:100vh;
         display:flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         background-color: #d3ecf3;
+        gap: 100px;
     }
     /* list-style-type: none */
     nav{
@@ -99,8 +101,39 @@
         top:50%;
         z-index:0;
         transform: translateY(-50%);
-        transition:0.3s cubic-bezier(0.77, 0, 0.175, 1);        
+        transition:0.3s cubic-bezier(0.77, 0, 0.175, 1);      
     }
+    #app{
+        display: flex;
+        width:90vw;
+        height:50px;
+        position:relative;
+        justify-content:space-evenly;
+        align-items: center;
+        background-color:#a2cdd8;
+        border-radius: 17px;
+    }
+    #app div{
+        color:black;
+        font-size: 1.2rem;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        text-transform: uppercase;
+        transition:all 0.3s ease-out 0s;
+        z-index:1;
+    }
+    #app div:last-child{
+        position:absolute;
+        background-color: #679aac;
+        height:100%;
+        /* 父元素#app不添加position属性的话，该元素的height:100%将参考body元素 */
+        /* 学习百分比数值参考机制 */
+        border-radius: 0.5em;
+        transform:scaleX(1.2);
+        z-index:0;
+    }
+
 /* t图标和文字都在链接标签*/
 </style>
 <body>
@@ -130,6 +163,16 @@
                 </li>
             </ul>
         </nav>
+
+
+        <main id="app">
+            <div>houdunren</div>
+            <div>Javascript</div>
+            <div>Share</div>
+            <div>Xiangjin</div>
+            <div>CSS</div>
+            <div>VUE</div>
+        </main>
 </body>
 <script>
     const links=document.querySelectorAll('a'),
@@ -149,5 +192,21 @@
             setActive(e.currentTarget);
         })
     })
+    const app=document.querySelector('#app')
+    app.insertAdjacentHTML('beforeend','<div></div>')
+    const mask=app.querySelector('#app div:last-child')
+    const elem=app.querySelector('#app div:first-child')
+    mask?.style.setProperty('left',elem.offsetLeft+'px')
+    mask?.style.setProperty('width',elem.offsetWidth+'px')
+    app.querySelectorAll('#app div').forEach((div)=>{
+        div.addEventListener("mouseenter",e=>{
+            const el=e.target;
+            mask?.style.setProperty('left',el.offsetLeft+'px')
+            mask?.style.setProperty('width',el.offsetWidth+'px')
+        })
+    })
+
+
+
 </script>
 </html>

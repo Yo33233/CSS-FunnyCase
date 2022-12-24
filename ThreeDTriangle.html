@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+        *{
+        padding:0;
+        margin:0;
+    }
+    body{
+        background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        height:100vh;
+    }
+    main{
+        width:200px;
+        height:200px;
+        transform:perspective(900px) rotateX(100deg) rotateY(30deg);
+        transform-style:preserve-3d;
+        border:solid 5px silver;
+        transition:2s;
+        transform-origin: center center 100px;
+    }
+    main:hover{
+        transform:perspective(900px) rotateX(180deg);
+    }
+    div{
+        width:200px;
+        height:200px;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        font-size:4em;
+        background:#27ae60;
+        transform-origin: center center 100px;
+    }
+    div:nth-child(1){
+        background: red;
+        transform:rotateY(90deg);
+    }
+    div:nth-child(2){
+        background: blue;
+        opacity:0.6;
+        transform:rotateY(180deg);
+    }
+    div:nth-child(3){
+        background: #fff;
+        opacity:0.7;
+        transform:rotateX(270deg);
+    }
+    div:nth-child(4){
+        background: orange;
+        opacity:0.6;
+        transform:rotateY(270deg);
+    }
+    div:nth-child(5){
+        background: purple;
+        opacity:0.6;
+        transform:rotateX(90deg);
+    }
+
+
+</style>
+<body>
+    <main>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+    </main>
+</body>
+</html>
