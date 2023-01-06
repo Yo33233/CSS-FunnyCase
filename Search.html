@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <style>
+            @font-face {
+        font-family:"SmileySans-Oblique";
+        src: url("./font/smiley-sans-v1.0.0/SmileySans-Oblique.otf")
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            display:flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height:100vh;
+            background-color: #ffdcdc;
+        }
+        .shell{
+            position:relative;
+            width:1000px;
+            background-color: #ff7575;
+            border-radius: 20px;
+            padding:20px;
+            box-shadow: 0 10px 50px #ff7575,0 0 0 20px #fff;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 80px;
+        }
+        .shell input{
+            width:80%;
+            height:40px;
+            color:#fff;
+            font:300 30px "SmileySans-Oblique";
+            border:0;
+            background-color: transparent;
+            outline: none;
+            text-decoration: none;
+        }
+        .shell a{
+            font-size: 40px;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            position: relative;
+        }
+        a .fa{
+            transition: all 0.2s;
+        }
+        a .fa-hand-o-right{
+            opacity: 0;
+        }
+        a:hover .fa-hand-o-right{
+            transform:translateX(40px);
+            opacity:1;
+        }
+        a:hover .fa-search{
+            opacity:0;
+        }
+        .shell a::before{
+            content:'GO!';
+            color:gray;
+            background-color: #ff7575;
+            font-size: 20px;
+            font-family: "SmileySans-Oblique";
+            position: absolute;
+            right:0;
+            border-radius: 10px;
+            opacity: 0;
+            top: 0;
+            display: inline-block;
+            padding: 0 30px;
+            height: 30px;
+            transition: all 0.3s;
+            animation: box 0.8s infinite ease;
+        }
+        a:hover::before {
+            /* transform: translateY(-80px); */
+            top:-80px;
+            opacity:1;
+        }
+        @keyframes box{
+            0%{
+                transform: rotate(0deg);
+            }
+            33%{
+                transform: rotate(8deg);
+            }
+            100%{
+                transform: rotate(-8deg);
+            }
+        }
+        .text{
+            font-family:"SmileySans-Oblique";
+            color: #ff7575;
+            font-size:150px;
+            position:relative;
+            margin:auto 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+        <input type="text" placeholder="Search">
+        <a href="#">
+           <i class="fa fa-hand-o-right"></i>
+           <i class="fa fa-search"></i>
+        </a>
+    </div>
+    <div class="text" data-text="SUMMON">SUMMON</div>
+</body>
+</html>
